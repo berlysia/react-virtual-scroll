@@ -1,6 +1,6 @@
 {
   "name": "@berlysia/react-virtual-scroll",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "height cacheable virtual scroll for react",
   "main": "lib/index.js",
   "scripts": {
