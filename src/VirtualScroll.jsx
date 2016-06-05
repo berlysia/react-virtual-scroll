@@ -68,10 +68,12 @@ export default class VirtualScroll extends Component {
             props
         );
         this.resetStateDebounce = debounce(this.virtualScrollState.reset);
+        this.clearCacheDebounce = debounce(this.virtualScrollState.clearCache);
     }
 
     // events
     handleResize() {
+        this.clearCacheDebounce.enqueue();
         this.resetStateDebounce.enqueue();
         this.updateDebounce.enqueue();
     }
