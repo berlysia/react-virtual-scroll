@@ -33,13 +33,16 @@ Install with [npm](https://www.npmjs.com/):
     - Default is some MapLike object. 
     - ES2015 Map is enough for this props.
     - MapLike is...
+
         ```
         interface MapLike {
             has(key: any): boolean;
             get(key: any): any;
-            set(key: any, val: any;
+            set(key: any, val: any): any;
+            clear(): any;
         }
         ```
+
 - viewport - HTMLElement or window
     - *Optional*. Default is `window`.
 - items - Array<*>
