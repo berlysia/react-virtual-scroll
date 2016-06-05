@@ -158,8 +158,8 @@ export default class VirtualScroll extends Component {
 
     // rendering
     renderItems() {
-        return this.state.items.map(item => {
-            return this.props.rowRenderer(item, this.props, this.state, this.updateHeight);
+        return this.state.items.map((item, index) => {
+            return this.props.rowRenderer(item, this.state.firstIdx + index, this.props, this.state, this.updateHeight);
         });
     }
 

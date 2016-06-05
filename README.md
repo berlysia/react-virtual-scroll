@@ -15,8 +15,9 @@ Install with [npm](https://www.npmjs.com/):
     - *Optional*.
 - className - string
     - *Optional*.
-- rowRenderer - (item: any, vsProps: Props, vsState: State, reportHeight: (item: any, height: number) => JSX.Element)
+- rowRenderer - (item: any, index: number, vsProps: Props, vsState: State, reportHeight: (item: any, height: number) => JSX.Element)
     - **Required**.
+    - `index` is the `item`'s index in original array.
     - `reportHeight`'s reference identity is ensured.
     - `vsProps` is this component's props object.
     - `vsState` is this component's state object.
