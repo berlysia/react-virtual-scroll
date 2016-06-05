@@ -83,7 +83,7 @@ module.exports = class App extends React.Component {
         this.state = {
             itemsSize: 100,
             assumedHeight: 40,
-            bufferSize: 0,
+            bufferSize: 5,
             wrapperId: 'virtual-scroll-id',
             wrapperClassName: 'virtual-scroll-class',
             wrapperComponent: 'div',
