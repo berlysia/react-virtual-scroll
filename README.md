@@ -6,11 +6,48 @@ height cacheable virtual scroll for react
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install react-virtual-scroll
+    npm install @berlysia/react-virtual-scroll
 
-## Usage
+## API
 
-- [ ] Write usage instructions
+### Props
+- id - string
+    - *Optional*.
+- className - string
+    - *Optional*.
+- rowRenderer - (item: any, vsProps: Props, vsState: State, reportHeight: (item: any, height: number) => JSX.Element)
+    - **Required**.
+    - `reportHeight`'s reference identity is ensured.
+    - `vsProps` is this component's props object.
+    - `vsState` is this component's state object.
+- wrapperComponent: ReactComponent or string
+    - *Optional*. Default is "div".
+- wrapperProps: any
+    - *Optional*. Default is {}.
+- assumedHeight - number
+    - **Required**.
+    - For items which have unknown height.
+- heightCache - MapLike
+    - *Optional*.
+    - Default is some MapLike object. 
+    - ES2015 Map is enough for this props.
+    - MapLike is...
+        ```
+        interface MapLike {
+            has(key: any): boolean;
+            get(key: any): any;
+            set(key: any, val: any;
+        }
+        ```
+- viewport - HTMLElement or window
+    - *Optional*. Default is `window`.
+- items - Array<*>
+    - **Required**.
+- itemToCacheKey - (item: any) => any(optional, default = x => x)
+    - *Optional*.
+- bufferSize - number
+    - *Optional*.
+    
 
 ## Running tests
 

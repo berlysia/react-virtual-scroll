@@ -13,12 +13,21 @@ const getInitialState = () => ({
     items: [],
 });
 
+/**
+ * @public
+ * @name VirtualScroll
+ * This component allows you to display a large list, with reusing item's component.
+ */
 export default class VirtualScroll extends Component {
     static propTypes = {
         id: PropTypes.string,
         className: PropTypes.string,
         rowRenderer: PropTypes.func.isRequired,
-        wrapperComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string]),
+        wrapperComponent: PropTypes.oneOfType([
+            PropTypes.func,
+            PropTypes.object,
+            PropTypes.string,
+        ]),
         wrapperProps: PropTypes.object,
 
         // for VirtualScrollCore
@@ -61,22 +70,6 @@ export default class VirtualScroll extends Component {
         this.resetStateDebounce = debounce(this.virtualScrollState.reset);
     }
 
-    getOffsetByIndex(index) {
-        return this.virtualScrollState.getOffsetByIndex(index);
-    }
-
-    getHeightByIndex(index) {
-        return this.virtualScrollState.getHeightByIndex(index);
-    }
-
-    getIndexByOffset(offset) {
-        return this.virtualScrollState.getIndexByOffset(offset);
-    }
-
-    getContentHeight() {
-        return this.virtualScrollState.getContentHeight();
-    }
-
     // events
     handleResize() {
         this.resetStateDebounce.enqueue();
@@ -103,8 +96,10 @@ export default class VirtualScroll extends Component {
     // update height cache
     // bound function
     updateHeight(item, height) {
-        const done = this.virtualScrollState.updateCache(item, height);
-        done && this.updateDebounce.enqueue();
+        const updateSuccessed = this.virtualScrollState.updateCache(item, height);
+        if(updateSuccessed) {
+            this.updateDebounce.enqueue();
+        }
     }
 
     update() {
@@ -185,5 +180,112 @@ export default class VirtualScroll extends Component {
                 { this.renderItems() }
             </this.props.wrapperComponent>
         );
+    }
+
+    // Delegate functions.
+
+    /**
+     * Get offset of item specified by index.
+     * @param {number} index - an item's index.
+     * @return {number} offset - the item's offset in px. 
+     */
+    getOffsetByIndex(index) {
+        return this.virtualScrollState.getOffsetByIndex(index);
+    }
+
+    /**
+     * Get cached height of item specified by index. Default value is 'assumedHeight'.
+     * @param {number} index - an item's index.
+     * @return {number} height - the item's height in px.
+     */
+    getHeightByIndex(index) {
+        return this.virtualScrollState.getHeightByIndex(index);
+    }
+
+    /**
+     * @param {number} offset - target offset.
+     * @return {number} index - of item which has greatest offset in less than or equal to given offset.
+     */
+    getIndexByOffset(offset) {
+        return this.virtualScrollState.getIndexByOffset(offset);
+    }
+
+    /**
+     * @return {number} contentHeight
+     */
+    getContentHeight() {
+        return this.virtualScrollState.getContentHeight();
+    }
+    
+    /**
+     * @return {number} offsetTop - offset of items container
+     */
+    getOffsetTop() {
+        return this.virtualScrollState.getOffsetTop();
+    }
+
+    /**
+     * @return {number} visibleFirstIdx - index of visible first sliced item
+     */
+    getVisibleFirstIndex() {
+        return this.virtualScrollState.getVisibleFirstIndex();
+    }
+
+    /**
+     * @return {number} visibleLastIdx - index of visible last sliced item
+     */
+    getVisibleLastIndex() {
+        return this.virtualScrollState.getVisibleLastIndex();
+    }
+
+    /**
+     * @return {number} firstIdx - index of first sliced item
+     */
+    getFirstIndex() {
+        return this.virtualScrollState.getFirstIndex();
+    }
+
+    /**
+     * @return {number} lastIdx - index of last sliced item
+     */
+    getLastIndex() {
+        return this.virtualScrollState.getLastIndex();
+    }
+
+    /**
+     * @return {Array<*>} items
+     */
+    getItems() {
+        return this.virtualScrollState.getItems();
+    }
+
+    /**
+     * @public
+     * @return {number} length of items
+     */
+    getItemsLength() {
+        return this.virtualScrollState.getItemsLength();
+    }
+
+    /**
+     * @public
+     * @return {number} last index of items
+     */
+    getItemsLastIndex() {
+        return this.virtualScrollState.getItemsLastIndex();
+    }
+
+    /**
+     * @return {number} visibleHeight - clientHeight in container element
+     */
+    getVisibleHeight() {
+        return this.virtualScrollState.getVisibleHeight();
+    }
+
+    /**
+     * @return {number} offsetTop - offset of items container
+     */
+    getScrollTop() {
+        return this.virtualScrollState.getScrollTop();
     }
 }
