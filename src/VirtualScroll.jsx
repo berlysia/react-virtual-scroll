@@ -147,11 +147,11 @@ export default class VirtualScroll extends Component {
             return true;
         }
 
-        if (this.state.beginIdx !== nextState.beginIdx) {
+        if (this.state.firstIdx !== nextState.firstIdx) {
             return true;
         }
 
-        if (this.state.endIdx !== nextState.endIdx) {
+        if (this.state.lastIdx !== nextState.lastIdx) {
             return true;
         }
 
