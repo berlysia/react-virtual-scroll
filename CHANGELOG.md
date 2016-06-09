@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/berlysia/react-virtual-scroll/compare/v0.1.1...v0.1.2) (2016-06-09)
+
+
+### Bug Fixes
+
+* **Component:** Fix prop names([1025ea4](https://github.com/berlysia/react-virtual-scroll/commit/1025ea4))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/berlysia/react-virtual-scroll/compare/v0.1.0...v0.1.1) (2016-06-05)
 
